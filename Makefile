@@ -6,7 +6,7 @@ SRCFLDR=./src
 OBJFLDR=./obj
 DESTFLDR=./dist
 
-mysh: $(OBJFLDR)/sh.o $(OBJFLDR)/get_path.o $(SRCFLDR)/main.c 
+$(DESTFLDR)/mysh: $(OBJFLDR)/sh.o $(OBJFLDR)/get_path.o $(SRCFLDR)/main.c 
 	$(CC) -g $(SRCFLDR)/main.c $(OBJFLDR)/sh.o $(OBJFLDR)/get_path.o -o $(DESTFLDR)/mysh
 
 $(OBJFLDR)/sh.o: $(SRCFLDR)/sh.c $(SRCFLDR)/sh.h
