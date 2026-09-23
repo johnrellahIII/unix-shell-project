@@ -100,8 +100,6 @@ Ctrl-C
 ls -l					; test passing arguments
 ls -l -a /proc/tty
 ls -l -F /proc/tty
-where					; test where
-where ls
 /bin/ls -l -g			; test absolutes and passing args
 /bin/ls -l
 file *					; test out * wildcard
