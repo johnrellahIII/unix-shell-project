@@ -1,3 +1,12 @@
+/*
+sh.h
+CISC 361 Programming Project 2: Unix Shell
+John Rellah III
+
+Prototypes and limits used by the shell.
+*/
+
+
 
 #include "get_path.h"
 
@@ -9,3 +18,6 @@ void printenv(char **envp);
 
 #define PROMPTMAX 32
 #define MAXARGS 10
+#define MAXLINE 1024
+
+
