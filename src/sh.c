@@ -91,6 +91,8 @@ int sh( int argc, char **argv, char **envp )
 
   (void)argc; (void)argv;
   shell_envp = envp;
+
+  path_list = get_path();
   
     while ( go )
   {
@@ -166,6 +168,7 @@ int sh( int argc, char **argv, char **envp )
       else if(strcmp(args[0], "setenv") == 0) {
       bi_setenv(args, nargs);
       }
+    }
     
 
      /*  else  program to exec */
@@ -180,13 +183,12 @@ int sh( int argc, char **argv, char **envp )
 
       /* else */
         /* fprintf(stderr, "%s: Command not found.\n", args[0]); */
-    }
+  }
 
     /* clean up before leaving*/
     free_path(path_list);
     free(prev_dir);
-  }
-  return 0;
+    return 0;
 } /* sh() */
 
 /* Prompt and parsing */
@@ -467,15 +469,312 @@ static void bi_which(char **args, int n) {
   original argument is passed to execve() unchanged. args[0] (the command itself)
   is never expanded. The result must be freed with free_argv().*/
 
-static char **expand_wildcard(char **args) {
-  
+static char **expand_wildcards(char **args) {
+  size_t n = 0, cap = 16;
+  char **out = malloc(cap * sizeof(char *));
+  int i;
+
+  if (out == NULL) {
+    perror("malloc");
+    return NULL;
+  }
+  out[0] = NULL;
+
+  for (i = 0; args[i] != NULL; i++) {
+    if (i > 0 && strpbrk(args[i], "?*") != NULL) {
+      glob_t g;
+      int rc = glob(args[i], GLOB_NOCHECK, NULL, &g);
+      if (rc == 0) {
+        size_t j;
+        int failed = 0;
+        for (j = 0; j < g.gl_pathc; j++) {
+          if (append_arg(&out, &n, &cap, g.gl_pathv[j]) != 0) {
+            failed = 1;
+            break;
+          }
+        }
+        globfree(&g);
+        if (failed) {
+          free_argv(out);
+          return NULL;
+      }
+      continue;
+    }
+    globfree(&g); /* glob error: fall through and keep the original*/
+  }
+  if (append_arg(&out, &n, &cap, args[i]) != 0) {
+    free_argv(out);
+    return NULL;
+  }
+  }
+return out;
+}
+
+/*
+Frees an argv array made by expand_wildcards(): every string,
+then the array itself.
+*/
+static void free_argv(char **argv) {
+  size_t i;
+  if (argv == NULL) {
+    return;
+  }
+  for (i = 0; argv[i] != NULL; i++) {
+    free(argv[i]);
+  }
+  free(argv);
+}
+
+/*
+Built-in cd: "cd" goes to home directory, "cd -" goes to the previous directory,
+"cd dir" goes to dir. More than one argument is an error.
+*/
+static void bi_cd(char **args, int n) {
+  char cwd[PATH_MAX];
+  char *target;
+
+  if (n > 2) {
+    fprintf(stderr, "cd: Too many arguments\n");
+    return;
+  }
+
+  if (n == 1) {
+    target = getenv("HOME");
+    if (target == NULL) {
+      fprintf(stderr, "cd: No home directory.\n");
+      return;
+    }
+  } else if (strcmp(args[1], "-") == 0) {
+    if (prev_dir == NULL) {
+      fprintf(stderr, ": No such file or directory\n");
+      return;
+    }
+    target = prev_dir;
+  } else {
+    target = args[1];
+  }
+
+  /* remember where we are BEFORE moving */
+  if (getcwd(cwd, sizeof(cwd)) == NULL) {
+    perror("getcwd");
+    cwd[0] = '\0';
+  }
+
+  if (chdir(target) != 0) {
+    fprintf(stderr, "%s: %s.\n", target, strerror(errno));
+    return; /* failed: prev_dir stays the same*/
+  }
+
+  free(prev_dir); /* success: old cwd becomes prev_dir*/
+  prev_dir = (cwd[0] != '\0') ? strdup(cwd) : NULL;
+}
+
+/*
+Built-in pwd: prints the current working directory
+*/
+static void bi_pwd(void) {
+  char cwd[PATH_MAX];
+  if (getcwd(cwd, sizeof(cwd)) == NULL) {
+    perror("getcwd");
+  } else {
+    printf("%s\n", cwd);
+  }
 }
 
 
-
+/*
+Prints every entry in directory dir, one per line, using opendir() and
+readdir(). Prints an error if dir cannot be opened.
+*/
 void list ( char *dir )
 {
-  /* see man page for opendir() and readdir() and print out filenames for
-  the directory passed */
-} /* list() */
+  DIR *d;
+  struct dirent *entry;
+
+  d = opendir(dir);
+  if (d == NULL) {
+    perror(dir);
+    return;
+  }
+
+  /*
+  readdir() returns NULL both at the end and on error. The only way to
+  tell them apart is to clear errno first and check it afterwards.
+  */
+
+  errno = 0;
+  while ((entry = readdir(d)) != NULL) {
+    printf("%s\n", entry->d_name);
+  }
+  if (errno != 0) {
+    perror("readdir");
+  }
+  closedir(d);
+} 
+
+/*
+Built-in list: no arguments lists the currect directory. Otherwise, for 
+each directory given, print a blank line, "dir:", then its files.
+*/
+
+static void bi_list(char **args, int n) {
+  int i;
+  if (n == 1) {
+    list(".");
+    return;
+  }
+  for (i = 1; i < n; i++) {
+    printf("\n%s:\n", args[i]);
+    fflush(stdout);
+    list(args[i]);
+  }
+}
+
+/* Built-in pid: prints the process id of the shell.*/
+static void bi_pid(void) {
+  printf("%d\n", (int)getpid());
+}
+
+/*
+Built-in kill: "kill pid" sends SIGTERM. "kill -N pid" sends signal N.
+Arguments are checked with strtol() so bad input is rejected.
+*/
+static void bi_kill(char **args, int n) {
+  int sig = SIGTERM;
+  int first = 1;
+  int i;
+
+  if (n < 2) {
+    fprintf(stderr, "kill: Too few arguments.\n");
+    return;
+  }
+
+  if (args[1][0] == '-') {
+    char *end;
+    long s = strtol(args[1] + 1, &end, 10);
+    if (args[1][1] == '\0' || *end != '\0' || s < 0 || s >= NSIG) {
+      fprintf(stderr, "kill: Unknown signal, kill -l lists singals.\n");
+      return;
+    }
+    sig = (int)s;
+    first = 2;
+    if (n < 3) {
+      fprintf(stderr, "kill: Too few arguments.\n");
+      return;
+    }
+  }
+  for (i = first; i < n; i++) {
+    char *end;
+    long pid = strtol(args[i], &end, 10);
+    if (args[i][0] == '\0' || *end != '\0' || pid <= 0) {
+      fprintf(stderr, "kill: Arguments shoud be jobs or process id's.\n");
+      continue;
+    }
+    if (kill((pid_t)pid, sig) != 0) {
+      fprintf(stderr, "%s: %s.\n", args[i], strerror(errno));
+    }
+  }
+}
+
+/* Built-in prompt: with an argument, that becomes the prompt prefix
+with none, ask the user to type a new prefix*/
+static void bi_prompt(char **args, int n) {
+  char buf[MAXLINE];
+  const char *newprefix;
+
+  if (n == 1) {
+    printf("  input prompt prefix: ");
+    fflush(stdout);
+    if (fgets(buf, sizeof(buf), stdin) == NULL) {
+      clearerr(stdin);
+      printf("\n");
+      return;
+    }
+    buf[strcspn(buf, "\n")] = '\0';
+    newprefix = buf;
+  } else {
+    newprefix = args[1];
+  }
+
+  strncpy(prefix, newprefix, PROMPTMAX);
+  prefix[PROMPTMAX] = '\0';
+}
+
+/* Prints every "NAME=value" string in the environment array. */
+void printenv(char **envp) {
+  while (*envp) {
+    printf("%s\n", *envp++);
+  }
+}
+
+/* Built-in printenv: no arguments prints the whole environment, one
+argument prints that variable's value, more is an error (like tcsh).*/
+
+static void bi_printenv(char **args, int n) {
+  if (n == 1) {
+    printenv(shell_envp);
+  } else if (n == 2) {
+    char *val = getenv(args[1]);
+    if (val != NULL) {
+      printf("%s\n", val);
+    }
+  } else {
+    fprintf(stderr, "printenv: Too many arguemnts.\n");
+  }
+}
+
+/* 
+Built in setenv: no arguments prints the environment, one argument
+sets it to empty, two sets NAME=value, more is an error (like tcsh).
+Changing path rebuilds the path list: changing home needs no extra work
+because cd reads home every time
+*/
+static void bi_setenv(char **args, int n) {
+  const char *value;
+
+  if (n == 1) {
+    printenv(shell_envp);
+    return;
+
+  }
+
+  if (n > 3) {
+    fprintf(stderr, "setenv: Too many arguments.\n");
+    return;
+  }
+
+  value = (n == 3) ? args[2] : ""; /* one arg -> empty variable*/
+  if (setenv(args[1], value, 1) != 0) {
+    perror("setenv");
+    return;
+  }
+
+  /*
+  Path changed: throw away the old list and build a new one
+  */
+  if (strcmp(args[1], "PATH") == 0) {
+    free_path(path_list);
+    path_list = get_path();
+  }
+}
+
+/*
+Frees the path linked list made by get_path() 
+get_path() makes one copy of the path string and every node's element
+points into that same copy, so the copy is freed once (through the first
+node, which points at its start) and then each node is freed.
+*/
+static void free_path(struct pathelement *pathlist) {
+  struct pathelement *next;
+
+  if (pathlist != NULL) {
+    free(pathlist->element); /* the single shared path string */
+  }
+  
+  while (pathlist != NULL) {
+    next = pathlist->next;
+    free(pathlist);
+    pathlist = next;
+  }
+}
 

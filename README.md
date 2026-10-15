@@ -155,3 +155,19 @@ exit
 
 ### Notes
 You need to check in your source code and submit the link via canvas.  Your project in gitlab should allow us to access the project.  If you are working as a pair, then both students may check in the same link (for one of their repositories)
+
+## Building and running
+```
+make    #builds dist/mysh (creates obj/ and dist automatically)
+./dist/mysh   # start the shell
+make clean    # remove build files
+```
+
+## Files
+- `src/main.c`: sets up signals (Ctrl-C caught, Ctrl-Z and SIGTERM ignored), then calls `sh()`
+- `src/sh.c`: the shell lopp, all built-in commands, program lookup, wildcards, fork/execve/waitpid
+- `src/sh.h`: prototypes and limits
+- `src/get_path.c`: provided skeleton code that turns $PATH into a linked list (used unchanged).
+
+## How wildcards work
+Before running an external command, `expand_wildcards()` in `sh.c` builds a new argument list. Every argument after the command name that contains  `*` or `?` is passed to `glob(3)`, which replaces it with the sorted list of matching file names (`*` matches any number of characters, `?` matches exactly one, and they can be combined) The `GLOB_NOCHECK` flag makes `glob` return the original text when nothing matches, so the original argument is passed to `execve()` unchanged, the same as tcsh. The list grows with `realloc` so any number of matches fits, and it is freed with `globfree()` and `free_argv()` after the command finished. Built-in commands are not expanded.
