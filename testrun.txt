@@ -1,0 +1,353 @@
+Script started on 2026-10-15 19:06:49-04:00 [TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="77" LINES="23"]
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii/src[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii/src[00m$ ../dist/mysh
+[?2004l  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> 
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> 
+Use "exit" to leave mysh.
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ^Z
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ^C which
+Executing built-in which
+which: Too few arguments
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> which ls
+Executing built-in which
+/usr/bin/ls
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls
+Executing /usr/bin/ls
+get_path.c  get_path.h	get_path_main.c	 main.c	 sh.c  sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> 
+Use "exit" to leave mysh.
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ^Z^C
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls -l
+Executing /usr/bin/ls
+total 40
+-rwxr-xr-x 1 jriii jriii  1256 Oct 13 18:36 get_path.c
+-rwxr-xr-x 1 jriii jriii   362 Oct 13 18:36 get_path.h
+-rwxr-xr-x 1 jriii jriii   467 Oct 13 18:36 get_path_main.c
+-rwxr-xr-x 1 jriii jriii  1225 Oct 13 18:36 main.c
+-rwxr-xr-x 1 jriii jriii 18736 Oct 15 18:49 sh.c
+-rwxr-xr-x 1 jriii jriii   416 Oct 13 18:37 sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls -l -F /proc. /tty
+Executing /usr/bin/ls
+total 0
+dr-x------ 2 root root 0 Oct 15 18:53 driver/
+-r--r--r-- 1 root root 0 Oct 15 18:48 drivers
+dr-xr-xr-x 2 root root 0 Oct 15 18:53 ldisc/
+-r--r--r-- 1 root root 0 Oct 15 18:53 ldiscs
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> /bin/ls -l -g
+Executing /bin/ls
+total 40
+-rwxr-xr-x 1 jriii  1256 Oct 13 18:36 get_path.c
+-rwxr-xr-x 1 jriii   362 Oct 13 18:36 get_path.h
+-rwxr-xr-x 1 jriii   467 Oct 13 18:36 get_path_main.c
+-rwxr-xr-x 1 jriii  1225 Oct 13 18:36 main.c
+-rwxr-xr-x 1 jriii 18736 Oct 15 18:49 sh.c
+-rwxr-xr-x 1 jriii   416 Oct 13 18:37 sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> /bin/ls -l
+Executing /bin/ls
+total 40
+-rwxr-xr-x 1 jriii jriii  1256 Oct 13 18:36 get_path.c
+-rwxr-xr-x 1 jriii jriii   362 Oct 13 18:36 get_path.h
+-rwxr-xr-x 1 jriii jriii   467 Oct 13 18:36 get_path_main.c
+-rwxr-xr-x 1 jriii jriii  1225 Oct 13 18:36 main.c
+-rwxr-xr-x 1 jriii jriii 18736 Oct 15 18:49 sh.c
+-rwxr-xr-x 1 jriii jriii   416 Oct 13 18:37 sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> file *
+Executing /usr/bin/file
+get_path.c:      C source, ASCII text
+get_path.h:      C source, ASCII text
+get_path_main.c: C source, ASCII text
+main.c:          C source, ASCII text
+sh.c:            C source, ASCII text
+sh.h:            C source, ASCII text
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls *
+Executing /usr/bin/ls
+get_path.c  get_path.h	get_path_main.c	 main.c	 sh.c  sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls *.c
+Executing /usr/bin/ls
+get_path.c  get_path_main.c  main.c  sh.c
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls -l sh.*
+Executing /usr/bin/ls
+-rwxr-xr-x 1 jriii jriii 18736 Oct 15 18:49 sh.c
+-rwxr-xr-x 1 jriii jriii   416 Oct 13 18:37 sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls -l s*.c
+Executing /usr/bin/ls
+-rwxr-xr-x 1 jriii jriii 18736 Oct 15 18:49 sh.c
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls -l s*h.c
+Executing /usr/bin/ls
+-rwxr-xr-x 1 jriii jriii 18736 Oct 15 18:49 sh.c
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls sh.?
+Executing /usr/bin/ls
+sh.c  sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls ?h.c
+Executing /usr/bin/ls
+sh.c
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls *.?
+Executing /usr/bin/ls
+get_path.c  get_path.h	get_path_main.c	 main.c	 sh.c  sh.h
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> blah
+blah: Command not found.
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> /blah
+/blah: Command not found.
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> ls -l /blah
+Executing /usr/bin/ls
+ls: cannot access '/blah': No such file or directory
+Exit 2
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> /usr/bin
+/usr/bin: Permission denied.
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> /bin/ls -la /
+Executing /bin/ls
+total 3464
+drwxr-xr-x  19 root root    4096 Oct 13 14:59 .
+drwxr-xr-x  19 root root    4096 Oct 13 14:59 ..
+lrwxrwxrwx   1 root root       7 Apr 20 04:46 bin -> usr/bin
+drwxr-xr-x   2 root root    4096 Apr 20 04:46 boot
+drwxr-xr-x  15 root root    3820 Oct 13 14:59 dev
+drwxr-xr-x  91 root root    4096 Oct 15 18:00 etc
+drwxr-xr-x   3 root root    4096 Oct 13 14:59 home
+-rwxr-xr-x   1 root root 3476152 Oct  7 17:21 init
+lrwxrwxrwx   1 root root       7 Apr 20 04:46 lib -> usr/lib
+lrwxrwxrwx   1 root root       9 Apr 20 04:46 lib64 -> usr/lib64
+drwx------   2 root root   16384 Oct 13 14:52 lost+found
+drwxr-xr-x   2 root root    4096 Aug 27 10:10 media
+drwxr-xr-x   5 root root    4096 Oct 13 14:53 mnt
+drwxr-xr-x   2 root root    4096 Aug 27 10:10 opt
+dr-xr-xr-x 231 root root       0 Oct 13 14:59 proc
+drwx------   3 root root    4096 Aug 27 10:13 root
+drwxr-xr-x  25 root root     700 Oct 15 07:49 run
+lrwxrwxrwx   1 root root       8 Apr 20 04:46 sbin -> usr/sbin
+drwxr-xr-x   2 root root    4096 Oct 13 14:53 snap
+drwxr-xr-x   2 root root    4096 Aug 27 10:10 srv
+dr-xr-xr-x  12 root root       0 Oct 15 18:56 sys
+drwxrwxrwt   9 root root     220 Oct 15 19:06 tmp
+drwxr-xr-x  12 root root    4096 Aug 27 10:10 usr
+drwxr-xr-x  13 root root    4096 Oct 13 14:53 var
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> file /bin/ls /bin/rm
+Executing /usr/bin/file
+/bin/ls: symbolic link to ../lib/cargo/bin/coreutils/ls
+/bin/rm: symbolic link to gnurm
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> which ls rm
+Executing built-in which
+/usr/bin/ls
+/usr/bin/rm
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> where ls rm
+Executing built-in where
+/usr/bin/ls
+/bin/ls
+/usr/bin/rm
+/bin/rm
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> list
+Executing built-in list
+sh.h
+main.c
+get_path.c
+sh.c
+get_path.h
+.
+..
+get_path_main.c
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> list / /usr/proc/bin
+Executing built-in list
+
+/:
+proc
+sbin
+snap
+init
+lib
+dev
+srv
+var
+tmp
+run
+opt
+lib64
+.
+mnt
+root
+sys
+..
+usr
+home
+boot
+lost+found
+media
+bin
+etc
+
+/usr/proc/bin:
+/usr/proc/bin: No such file or directory
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> cd
+Executing built-in cd
+  [/home/jriii]> pwd
+Executing built-in pwd
+/home/jriii
+  [/home/jriii]> cd /blah
+Executing built-in cd
+/blah: No such file or directory.
+  [/home/jriii]> cd /usr/bin /usr/ucb
+Executing built-in cd
+cd: Too many arguments
+  [/home/jriii]> cd -
+Executing built-in cd
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> pwd
+Executing built-in pwd
+/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src
+  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> more sh.c
+Executing /usr/bin/more
+/*
+sh.c
+CISC 361 Programming Project 2: Unix Shell
+John Rellah III
+
+The shell itself. sh() runs the read / parse / execute loop:
+1. print the prompt "prefix [cwd] > "
+2. read a line with fgets() (Ctrl-D / EOF is ignored)
+3. split it into words with strtok()
+4. run a built-in (exit,which,where,cd,pwd,list,pid,kill,prompt,printenv,sete
+nv)
+    or find the program in the PATH, expand * and ?
+    wildcards, and run it with fork() / execve() / waitpid()
+
+
+*/
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <strings.h>
+[7m--More--(2%)[27m[K  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> cd /usr/bin
+Executing built-in cd
+  [/usr/bin]> pwd
+Executing built-in pwd
+/usr/bin
+  [/usr/bin]> ./ls /
+Executing ./ls
+bin   dev  home	 lib	lost+found  mnt	 proc  run   snap  sys	usr
+boot  etc  init	 lib64	media	    opt	 root  sbin  srv   tmp	var
+  [/usr/bin]> ../bin/;s  ls /
+Executing ../bin/ls
+bin   dev  home	 lib	lost+found  mnt	 proc  run   snap  sys	usr
+boot  etc  init	 lib64	media	    opt	 root  sbin  srv   tmp	var
+  [/usr/bin]> pid
+Executing built-in pid
+70573
+  [/usr/bin]> kill
+Executing built-in kill
+kill: Too few arguments.
+  [/usr/bin]> kill 70573
+Executing built-in kill
+  [/usr/bin]> kill -1 70573
+Executing built-in kill
+Hangup                     ../dist/mysh
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii/src[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii/src[00m$ ../dist/mysh
+[?2004l  [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> prompt
+Executing built-in prompt
+  input prompt prefix: hello
+hello [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> promt 361 shell
+promt: Command not found.
+hello [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> prompt 361  shell
+Executing built-in prompt
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> printenv PATH
+Executing built-in printenv
+/home/jriii/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/jriii/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2/bin:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_3.0.3.0_x64__8wekyb3d8bbwe:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/WSL/:/mnt/c/Users/jriii/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jriii/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/jriii/AppData/Local/Programs/Git/cmd:/snap/bin
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> printenv
+Executing built-in printenv
+SHELL=/bin/bash
+COLORTERM=truecolor
+WSL2_GUI_APPS_ENABLED=1
+TERM_PROGRAM_VERSION=1.141.1
+COPILOT_DEBUG_NONCE=1a85fbbc6546e13d00774ceab6377346
+WSL_DISTRO_NAME=Ubuntu
+NAME=Code
+PERF_EXEC_PATH=/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2/libexec/perf-core
+PWD=/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src
+LOGNAME=jriii
+VSCODE_GIT_ASKPASS_NODE=/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/node
+MOTD_SHOWN=update-motd
+HOME=/home/jriii
+LANG=C.UTF-8
+WSL_INTEROP=/run/WSL/2646_interop
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+WAYLAND_DISPLAY=wayland-0
+GIT_ASKPASS=/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
+LESSCLOSE=/usr/bin/lesspipe %s %s
+TERM=xterm-256color
+LESSOPEN=| /usr/bin/lesspipe %s
+USER=jriii
+VSCODE_GIT_IPC_HANDLE=/run/user/1000/vscode-git-a545ed9089.sock
+DISPLAY=:0
+SHLVL=3
+XDG_RUNTIME_DIR=/run/user/1000
+DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
+WSLENV=ELECTRON_RUN_AS_NODE/w:
+VSCODE_GIT_ASKPASS_MAIN=/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/extensions/git/dist/askpass-main.js
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+PATH=/home/jriii/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/jriii/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2/bin:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_3.0.3.0_x64__8wekyb3d8bbwe:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/WSL/:/mnt/c/Users/jriii/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jriii/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/jriii/AppData/Local/Programs/Git/cmd:/snap/bin
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+HOSTTYPE=x86_64
+PULSE_SERVER=unix:/mnt/wslg/PulseServer
+OLDPWD=/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii
+TERM_PROGRAM=vscode
+VSCODE_IPC_HOOK_CLI=/run/user/1000/vscode-ipc-781a56e9-513f-4216-9355-59dca13703a5.sock
+_=../dist/mysh
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> setenv
+Executing built-in setenv
+SHELL=/bin/bash
+COLORTERM=truecolor
+WSL2_GUI_APPS_ENABLED=1
+TERM_PROGRAM_VERSION=1.141.1
+COPILOT_DEBUG_NONCE=1a85fbbc6546e13d00774ceab6377346
+WSL_DISTRO_NAME=Ubuntu
+NAME=Code
+PERF_EXEC_PATH=/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2/libexec/perf-core
+PWD=/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src
+LOGNAME=jriii
+VSCODE_GIT_ASKPASS_NODE=/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/node
+MOTD_SHOWN=update-motd
+HOME=/home/jriii
+LANG=C.UTF-8
+WSL_INTEROP=/run/WSL/2646_interop
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
+WAYLAND_DISPLAY=wayland-0
+GIT_ASKPASS=/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
+LESSCLOSE=/usr/bin/lesspipe %s %s
+TERM=xterm-256color
+LESSOPEN=| /usr/bin/lesspipe %s
+USER=jriii
+VSCODE_GIT_IPC_HANDLE=/run/user/1000/vscode-git-a545ed9089.sock
+DISPLAY=:0
+SHLVL=3
+XDG_RUNTIME_DIR=/run/user/1000
+DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
+WSLENV=ELECTRON_RUN_AS_NODE/w:
+VSCODE_GIT_ASKPASS_MAIN=/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/extensions/git/dist/askpass-main.js
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+PATH=/home/jriii/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/jriii/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/jriii/.vscode-server/bin/7baac39ec3ca969dab74ac12c097f6a486e46593/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2/bin:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_3.0.3.0_x64__8wekyb3d8bbwe:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/WSL/:/mnt/c/Users/jriii/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jriii/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/jriii/AppData/Local/Programs/Git/cmd:/snap/bin
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+HOSTTYPE=x86_64
+PULSE_SERVER=unix:/mnt/wslg/PulseServer
+OLDPWD=/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii
+TERM_PROGRAM=vscode
+VSCODE_IPC_HOOK_CLI=/run/user/1000/vscode-ipc-781a56e9-513f-4216-9355-59dca13703a5.sock
+_=../dist/mysh
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> setenv TEST
+Executing built-in setenv
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> printenv TEST
+Executing built-in printenv
+
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> setenv TEST testing
+Executing built-in setenv
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> printenv TEST
+Executing built-in printenv
+testing
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> setenv TEST testing more
+Executing built-in setenv
+setenv: Too many arguments.
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> setenv HOME /
+Executing built-in setenv
+361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> cd
+Executing built
