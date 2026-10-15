@@ -350,4 +350,41 @@ setenv: Too many arguments.
 361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> setenv HOME /
 Executing built-in setenv
 361shell [/home/jriii/cisc361/programming-project-2-coding-a-shell-jriii/src]> cd
-Executing built
+Executing built-in cd
+361shell [/]> pwd
+Executing built-in pwd
+/
+361shell [/]> exit
+Executing built-in exit
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii/src[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii/src[00m$ cd ..
+[?2004l[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it add testrun.txt
+[?2004l[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it commit -m "Add rest [K[K[K[K[Ktest run and finished implementing sh.c"
+[?2004l[main 0afcc1a] Add test run and finished implementing sh.c
+ 1 file changed, 353 insertions(+)
+ create mode 100644 testrun.txt
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it add .
+[?2004l[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it commit -n[Km "add r[Kte[Kest ru a[K[Kn and finished implementing sh.c
+[?2004l[?2004h> "
+[?2004l[main 460cda3] add test run and finished implementing sh.c
+ 3 files changed, 328 insertions(+), 10 deletions(-)
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it push
+[?2004l^C
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it add .
+[?2004l[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it status
+[?2004lOn branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it commit -m "implemented rest of sh.c and added test run"
+[?2004lOn branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+[?2004h]0;jriii@CSS-SL-PW087R3L: ~/cisc361/programming-project-2-coding-a-shell-jriii[01;32mjriii@CSS-SL-PW087R3L[00m:[01;34m~/cisc361/programming-project-2-coding-a-shell-jriii[00m$ g it push
+[?2004lEnumerating objects: 14, done.
+Counting objects:   7% (1/14)Counting objects:  14% (2/14)Counting objects:  21% (3/14)Counting objects:  28% (4/14)Counting objects:  35% (5/14)Counting objects:  42% (6/14)Counting objects:  50% (7/14)Counting objects:  57% (8/14)Counting objects:  64% (9/14)Counting objects:  71% (10/14)Counting objects:  78% (11/14)Counting objects:  85% (12/14)Counting objects:  92% (13/14)Counting objects: 100% (14/14)Counting objects: 100% (14/14), done.
+Delta compression using up to 12 threads
+Compressing objects:  11% (1/9)Compressing objects:  22% (2/9)Compressing objects:  33% (3/9)Compressing objects:  44% (4/9)Compressing objects:  55% (5/9)Compressing objects:  66% (6/9)Compressing objects:  77% (7/9)Compressing objects:  88% (8/9)Compressing objects: 100% (9/9)Compressing objects: 100% (9/9), done.
+Writing objects:  11% (1/9)Writing objects:  22% (2/9)Writing objects:  33% (3/9)Writing objects:  44% (4/9)Writing objects:  55% (5/9)Writing objects:  66% (6/9)Writing objects:  77% (7/9)Writing objects:
