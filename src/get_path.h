@@ -1,8 +1,4 @@
-/* 
-  get_path.h
-  Ben Miller
 
-*/
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
